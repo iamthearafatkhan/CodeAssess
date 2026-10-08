@@ -1,0 +1,4 @@
+.env
+media/
+backend/staticfiles/
+backend/media/

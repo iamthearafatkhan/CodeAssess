@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+Allow: /practice
+
+# Private — do not index
+Disallow: /student
+Disallow: /teacher
+Disallow: /teacher/
+Disallow: /exam/
+Disallow: /join
+
+Sitemap: https://codeexam.example.com/sitemap.xml
