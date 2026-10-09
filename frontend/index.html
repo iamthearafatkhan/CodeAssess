@@ -4,25 +4,143 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>CodeExam — Online Programming Examination Platform</title>
-    <meta name="description" content="CodeExam is a web-based platform for teachers to create coding exams and for students to solve and submit programming problems online." />
+    <title>CodeAssess — Online Programming Examination Platform</title>
+    <meta name="description" content="CodeAssess is a web-based platform for teachers to create coding exams and for students to solve and submit programming problems online." />
     <meta name="theme-color" content="#030712" />
 
-    <!-- Open Graph (used by Facebook, LinkedIn, Discord previews) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="CodeExam — Online Programming Examination Platform" />
+    <meta property="og:title" content="CodeAssess — Online Programming Examination Platform" />
     <meta property="og:description" content="Practice code. Take programming exams. Evaluate submissions." />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="CodeExam" />
+    <meta name="twitter:title" content="CodeAssess" />
     <meta name="twitter:description" content="Online programming examination platform." />
 
-    <!-- Don't index private pages; only public routes should be crawled. -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <style>
+      /* Loading splash — visible until React mounts */
+      html, body {
+        background-color: #030712;
+        margin: 0;
+      }
+
+      #splash {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #030712;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+
+      #splash.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .splash-logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 60px rgba(59, 130, 246, 0.4);
+        animation: pulse 1.6s ease-in-out infinite, rotate 8s linear infinite;
+      }
+
+      .splash-logo svg {
+        width: 40px;
+        height: 40px;
+        fill: white;
+      }
+
+      .splash-text {
+        margin-top: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shift 3s linear infinite;
+        letter-spacing: -0.5px;
+      }
+
+      .splash-bar {
+        margin-top: 24px;
+        width: 160px;
+        height: 3px;
+        background: #1f2937;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .splash-bar::after {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 40%;
+        background: linear-gradient(90deg, #3b82f6, #a855f7);
+        border-radius: 999px;
+        animation: slide 1.4s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 60px rgba(59, 130, 246, 0.4); }
+        50% { box-shadow: 0 0 90px rgba(168, 85, 247, 0.6); }
+      }
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes shift {
+        to { background-position: 200% center; }
+      }
+      @keyframes slide {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(280%); }
+      }
+    </style>
   </head>
   <body>
+    <div id="splash">
+      <div class="splash-logo">
+        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
+          <path d="M392.8 65.2C375.8 60.3 358.1 70.2 353.2 87.2L225.2 535.2C220.3 552.2 230.2 569.9 247.2 574.8C264.2 579.7 281.9 569.8 286.8 552.8L414.8 104.8C419.7 87.8 409.8 70.1 392.8 65.2zM457.4 201.3C444.9 213.8 444.9 234.1 457.4 246.6L530.8 320L457.4 393.4C444.9 405.9 444.9 426.2 457.4 438.7C469.9 451.2 490.2 451.2 502.7 438.7L598.7 342.7C611.2 330.2 611.2 309.9 598.7 297.4L502.7 201.4C490.2 188.9 469.9 188.9 457.4 201.4zM182.7 201.3C170.2 188.8 149.9 188.8 137.4 201.3L41.4 297.3C28.9 309.8 28.9 330.1 41.4 342.6L137.4 438.6C149.9 451.1 170.2 451.1 182.7 438.6C195.2 426.1 195.2 405.8 182.7 393.3L109.3 320L182.6 246.6C195.1 234.1 195.1 213.8 182.6 201.3z"/>
+        </svg>
+      </div>
+      <div class="splash-text">CodeAssess</div>
+      <div class="splash-bar"></div>
+    </div>
+
     <div id="root"></div>
+
+    <script>
+      // Hide splash once React mounts
+      const observer = new MutationObserver(() => {
+        const root = document.getElementById('root');
+        if (root && root.children.length > 0) {
+          const splash = document.getElementById('splash');
+          if (splash) {
+            splash.classList.add('hidden');
+            setTimeout(() => splash.remove(), 400);
+          }
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.getElementById('root'), { childList: true });
+    </script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
