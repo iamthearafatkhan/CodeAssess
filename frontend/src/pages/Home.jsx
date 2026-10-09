@@ -7,21 +7,39 @@ const FEATURES = [
     title: 'Live code execution',
     body: 'C, C++, Python, Java — run and grade in a sandboxed environment.',
     accent: 'from-blue-500 to-cyan-400',
+    glow: 'shadow-blue-500/40',
+    icon: (
+      <svg viewBox="0 0 640 640" className="w-7 h-7 fill-white">
+        <path d="M73.4 182.6C60.9 170.1 60.9 149.8 73.4 137.3C85.9 124.8 106.2 124.8 118.7 137.3L278.7 297.3C291.2 309.8 291.2 330.1 278.7 342.6L118.7 502.6C106.2 515.1 85.9 515.1 73.4 502.6C60.9 490.1 60.9 469.8 73.4 457.3L210.7 320L73.4 182.6zM288 448L544 448C561.7 448 576 462.3 576 480C576 497.7 561.7 512 544 512L288 512C270.3 512 256 497.7 256 480C256 462.3 270.3 448 288 448z" />
+      </svg>
+    ),
   },
   {
     title: 'Exam codes',
     body: 'Teachers share a 6-character code. Students join instantly.',
     accent: 'from-purple-500 to-pink-400',
+    glow: 'shadow-purple-500/40',
+    icon: (
+      <svg viewBox="0 0 640 640" className="w-7 h-7 fill-white">
+        <path d="M64 160C64 124.7 92.7 96 128 96L512 96C547.3 96 576 124.7 576 160L576 400L512 400L512 160L128 160L128 400L64 400L64 160zM0 467.2C0 456.6 8.6 448 19.2 448L620.8 448C631.4 448 640 456.6 640 467.2C640 509.6 605.6 544 563.2 544L76.8 544C34.4 544 0 509.6 0 467.2zM281 273L250 304L281 335C290.4 344.4 290.4 359.6 281 368.9C271.6 378.2 256.4 378.3 247.1 368.9L199.1 320.9C189.7 311.5 189.7 296.3 199.1 287L247.1 239C256.5 229.6 271.7 229.6 281 239C290.3 248.4 290.4 263.6 281 272.9zM393 239L441 287C450.4 296.4 450.4 311.6 441 320.9L393 368.9C383.6 378.3 368.4 378.3 359.1 368.9C349.8 359.5 349.7 344.3 359.1 335L390.1 304L359.1 273C349.7 263.6 349.7 248.4 359.1 239.1C368.5 229.8 383.7 229.7 393 239.1z" />
+      </svg>
+    ),
   },
   {
     title: 'Auto grading',
     body: 'Every submission runs against hidden test cases and scores itself.',
     accent: 'from-emerald-500 to-green-400',
+    glow: 'shadow-emerald-500/40',
+    iconType: 'image',
+    iconSrc: '/auto-grading.gif',
   },
   {
     title: 'Publish results',
     body: 'Grades, feedback, and percentages appear the moment you publish.',
     accent: 'from-amber-500 to-orange-400',
+    glow: 'shadow-amber-500/40',
+    iconType: 'image',
+    iconSrc: '/publish-result.png',
   },
 ];
 
@@ -41,11 +59,11 @@ export default function Home() {
       {/* Nav */}
       <header className="relative z-10 max-w-6xl mx-auto w-full px-6 py-5 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
-              <svg viewBox="0 0 640 640" className="w-5 h-5 fill-white">
-                <path d="M392.8 65.2C375.8 60.3 358.1 70.2 353.2 87.2L225.2 535.2C220.3 552.2 230.2 569.9 247.2 574.8C264.2 579.7 281.9 569.8 286.8 552.8L414.8 104.8C419.7 87.8 409.8 70.1 392.8 65.2zM457.4 201.3C444.9 213.8 444.9 234.1 457.4 246.6L530.8 320L457.4 393.4C444.9 405.9 444.9 426.2 457.4 438.7C469.9 451.2 490.2 451.2 502.7 438.7L598.7 342.7C611.2 330.2 611.2 309.9 598.7 297.4L502.7 201.4C490.2 188.9 469.9 188.9 457.4 201.4zM182.7 201.3C170.2 188.8 149.9 188.8 137.4 201.3L41.4 297.3C28.9 309.8 28.9 330.1 41.4 342.6L137.4 438.6C149.9 451.1 170.2 451.1 182.7 438.6C195.2 426.1 195.2 405.8 182.7 393.3L109.3 320L182.6 246.6C195.1 234.1 195.1 213.8 182.6 201.3z"/>
-              </svg>
-            </div>
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
+            <svg viewBox="0 0 640 640" className="w-5 h-5 fill-white">
+              <path d="M392.8 65.2C375.8 60.3 358.1 70.2 353.2 87.2L225.2 535.2C220.3 552.2 230.2 569.9 247.2 574.8C264.2 579.7 281.9 569.8 286.8 552.8L414.8 104.8C419.7 87.8 409.8 70.1 392.8 65.2zM457.4 201.3C444.9 213.8 444.9 234.1 457.4 246.6L530.8 320L457.4 393.4C444.9 405.9 444.9 426.2 457.4 438.7C469.9 451.2 490.2 451.2 502.7 438.7L598.7 342.7C611.2 330.2 611.2 309.9 598.7 297.4L502.7 201.4C490.2 188.9 469.9 188.9 457.4 201.4zM182.7 201.3C170.2 188.8 149.9 188.8 137.4 201.3L41.4 297.3C28.9 309.8 28.9 330.1 41.4 342.6L137.4 438.6C149.9 451.1 170.2 451.1 182.7 438.6C195.2 426.1 195.2 405.8 182.7 393.3L109.3 320L182.6 246.6C195.1 234.1 195.1 213.8 182.6 201.3z" />
+            </svg>
+          </div>
           <span className="font-bold text-lg">CodeAssess</span>
         </Link>
 
@@ -58,10 +76,7 @@ export default function Home() {
               >
                 Dashboard
               </Link>
-              <button
-                onClick={logout}
-                className="text-gray-400 hover:text-gray-200 px-2"
-              >
+              <button onClick={logout} className="text-gray-400 hover:text-gray-200 px-2">
                 Logout
               </button>
             </>
@@ -186,22 +201,44 @@ print(find_largest(nums))`}
         </p>
 
         <div className="grid md:grid-cols-2 gap-5">
-          {FEATURES.map((f) => (
+          {FEATURES.map((f, i) => (
             <div
               key={f.title}
-              className="group bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition"
+              className="group relative bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
             >
+              {/* Hover glow */}
               <div
-                className={`w-12 h-12 rounded-xl bg-gradient-to-br ${f.accent} mb-4 float-med`}
+                className={`absolute -top-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-br ${f.accent} opacity-0 group-hover:opacity-20 blur-3xl transition-opacity duration-500 pointer-events-none`}
               />
-              <h3 className="font-semibold text-lg mb-2">{f.title}</h3>
-              <p className="text-sm text-gray-400">{f.body}</p>
+
+              <div className="relative">
+                {f.iconType === 'image' ? (
+                  <div className="w-14 h-14 mb-5 flex items-center justify-center">
+                    <img
+                      src={f.iconSrc}
+                      alt={f.title}
+                      className={`w-full h-full object-contain transition-transform duration-300 group-hover:scale-110 ${f.glow} group-hover:drop-shadow-xl`}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${f.accent} flex items-center justify-center mb-5 float-med shadow-lg ${f.glow} group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300`}
+                    style={{ animationDelay: `${i * 0.4}s` }}
+                  >
+                    {f.icon}
+                  </div>
+                )}
+
+                <h3 className="font-semibold text-lg mb-2 group-hover:text-white transition">
+                  {f.title}
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">{f.body}</p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
